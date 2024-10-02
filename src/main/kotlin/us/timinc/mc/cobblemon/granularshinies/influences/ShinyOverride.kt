@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import net.minecraft.server.network.ServerPlayerEntity
 import us.timinc.mc.cobblemon.granularshinies.GranularShinies.config
 import us.timinc.mc.cobblemon.granularshinies.GranularShinies.debug
+import us.timinc.mc.cobblemon.granularshinies.extensions.isInvalid
 import java.util.*
 import kotlin.random.Random.Default.nextInt
 
@@ -24,7 +25,7 @@ class ShinyOverride(@Suppress("unused") private val player: ServerPlayerEntity) 
         val roll = nextInt(rate.toInt())
         debug("Rolled a $roll out of $rate (need to roll lower than 1)", uuid)
         if (roll < 1) {
-            debug("Setting to shiny")
+            debug("Setting to shiny", uuid)
             action.props.shiny = true
         }
     }

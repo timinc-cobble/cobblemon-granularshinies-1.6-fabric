@@ -1,1 +1,1 @@
-# cobblemon-granularshinies-1.5-fabric
+# cobblemon-granularshinies-1.6-fabric

@@ -28,7 +28,7 @@ object GranularShinies : ModInitializer {
         CobblemonEvents.DATA_SYNCHRONIZED.subscribe {
             config.overrides.forEach { (properties) ->
                 if (PokemonProperties.parse(properties).isInvalid()) {
-                    debug("Your override of $properties is invalid and will match all Pokemon")
+                    debug("Your override of $properties is invalid and will match all Pokemon", bypassConfig = true)
                 }
             }
         }

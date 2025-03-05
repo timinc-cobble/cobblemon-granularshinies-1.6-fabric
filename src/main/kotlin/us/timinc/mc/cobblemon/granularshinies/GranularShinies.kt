@@ -3,16 +3,13 @@ package us.timinc.mc.cobblemon.granularshinies
 import com.cobblemon.mod.common.api.Priority
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
-import com.cobblemon.mod.common.api.spawning.BestSpawner
-import com.cobblemon.mod.common.api.spawning.spawner.PlayerSpawnerFactory
-import com.cobblemon.mod.common.platform.events.PlatformEvents
 import net.fabricmc.api.ModInitializer
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import us.timinc.mc.cobblemon.granularshinies.config.ConfigBuilder
 import us.timinc.mc.cobblemon.granularshinies.config.MainConfig
+import us.timinc.mc.cobblemon.granularshinies.events.ShinyChanceCalculationHandler
 import us.timinc.mc.cobblemon.granularshinies.extensions.isInvalid
-import us.timinc.mc.cobblemon.granularshinies.influences.ShinyOverride
 import java.util.*
 
 object GranularShinies : ModInitializer {
@@ -24,10 +21,7 @@ object GranularShinies : ModInitializer {
     override fun onInitialize() {
         config = ConfigBuilder.load(MainConfig::class.java, MOD_ID)
         validateConfig()
-        PlayerSpawnerFactory.influenceBuilders.add(::ShinyOverride)
-        PlatformEvents.SERVER_STARTED.subscribe(Priority.LOWEST) {
-            BestSpawner.fishingSpawner.influences.add(ShinyOverride())
-        }
+        CobblemonEvents.SHINY_CHANCE_CALCULATION.subscribe(Priority.HIGHEST, ShinyChanceCalculationHandler::handle)
     }
 
     private fun validateConfig() {

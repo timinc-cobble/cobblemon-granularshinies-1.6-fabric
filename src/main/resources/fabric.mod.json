@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cobblemon_granularshinies",
-  "version": "1.6-fabric-1.0.2",
+  "version": "1.6-fabric-1.1.0",
   "name": "Cobblemon Granular Shinies",
   "description": "Customize shiny rates on a Pokemon Description level.",
   "authors": ["TimInc aka Timothy Metcalfe"],
